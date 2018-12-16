@@ -1,0 +1,21 @@
+.i-card .mdui-card{
+	margin: 5px;
+}
+.i-card a:not(.nav){
+	text-decoration:none;
+	display: block;
+}
+.i-card .mdui-card-header-avatar{
+    width: 70px!important;
+    height: 88px!important;
+    border-radius: 0!important;
+	/*margin-bottom: 16px;*/
+}
+.i-card .bgm-content{
+    margin-left: 80px!important;
+	opacity: 1!important;
+}
+.i-card .mdui-progress{
+    height: 20px!important;
+	width: auto!important;
+}
