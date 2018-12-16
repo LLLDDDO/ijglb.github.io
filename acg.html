@@ -80,6 +80,7 @@
         }
         function creatbgmdo(data,dom){
             if(data != null && data.code == '0'){
+                isdo = dom.attr('bgm-action') =='do';
                 dom.empty();
                 $.each(data.data, function (i, value) {
                     var str = '<div class="mdui-col">';
@@ -90,7 +91,7 @@
                     str+= '<div class="mdui-card-header-subtitle bgm-content">'+value.name+'</div>';
                     str+= '<div class="mdui-card-header-subtitle bgm-content">&nbsp;</div>';
                     if((value.eps_count == 0 && value.ep_status == 0)||value.eps_count == null){
-                        if(value.star && value.update_time){
+                        if(value.star && value.update_time && !isdo){
                             var progress = Math.round(value.star / 10 * 10000) / 100.00;
                             str+= '<div class="mdui-card-header-subtitle mdui-progress bgm-content"><div class="mdui-progress-determinate" style="width: '+progress+'%;">'+value.update_time+',个人评分:'+value.star+'</div></div>';
                         }
