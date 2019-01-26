@@ -4,12 +4,12 @@
     <div class="mdui-card mdui-m-t-2">
         <div class="mdui-card-content mdui-typo acg">
             <div class="mdui-tab mdui-tab-scrollable mdui-tab-centered" mdui-tab>
-                <a @click="changetab('anime','do')" class="mdui-ripple mdui-tab-active">在看的动画</a>
-                <a @click="changetab('anime','collect')" class="mdui-ripple">看过的动画</a>
-                <a @click="changetab('book','do')" class="mdui-ripple">在看的图书</a>
-                <a @click="changetab('book','collect')" class="mdui-ripple">看过的图书</a>
-                <a @click="changetab('game','do')" class="mdui-ripple">在玩的游戏</a>
-                <a @click="changetab('game','collect')" class="mdui-ripple">玩过的游戏</a>
+                <a @click="changetab('anime','do')" :class="{ 'mdui-tab-active' : animedo }" class="mdui-ripple">在看的动画</a>
+                <a @click="changetab('anime','collect')" :class="{ 'mdui-tab-active' : animecollect }" class="mdui-ripple">看过的动画</a>
+                <a @click="changetab('book','do')" :class="{ 'mdui-tab-active' : bookdo }" class="mdui-ripple">在看的图书</a>
+                <a @click="changetab('book','collect')" :class="{ 'mdui-tab-active' : bookcollect }" class="mdui-ripple">看过的图书</a>
+                <a @click="changetab('game','do')" :class="{ 'mdui-tab-active' : gamedo }" class="mdui-ripple">在玩的游戏</a>
+                <a @click="changetab('game','collect')" :class="{ 'mdui-tab-active' : gamecollect }" class="mdui-ripple">玩过的游戏</a>
             </div>
             <component_acg_bangumi :action="action" :type="type"></component_acg_bangumi>
         </div>
@@ -25,6 +25,26 @@
         },
         init:function(){
           document.title = '我的ACG时光机 - 极光萝卜';
+        },
+        computed:{
+            animedo : function(){
+                return this.type == 'anime' && this.action == 'do';
+            },
+            animecollect : function(){
+                return this.type == 'anime' && this.action == 'collect';
+            },
+            bookdo : function(){
+                return this.type == 'book' && this.action == 'do';
+            },
+            bookcollect : function(){
+                return this.type == 'book' && this.action == 'collect';
+            },
+            gamedo : function(){
+                return this.type == 'game' && this.action == 'do';
+            },
+            gamecollect : function(){
+                return this.type == 'game' && this.action == 'collect';
+            }
         },
         methods:{
           changetab:function(type,action){
