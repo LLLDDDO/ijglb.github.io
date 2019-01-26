@@ -1,145 +1,36 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-    <meta name="renderer" content="webkit">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>我的ACG时光机 - 极光萝卜</title>
-    <link rel="icon shortcut" type="image/ico" href="./image/avatar_128.png">
-    <link rel="icon" sizes="128x128" href="./image/avatar_128.png">
-    <link rel="apple-touch-icon" href="./image/avatar_128.png">
-    <link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/mdui/0.4.2/css/mdui.min.css">
-    <link rel="stylesheet" href="./index.css">
-    <link rel="stylesheet" href="./acg.css">
-    <script src="https://cdnjs.loli.net/ajax/libs/mdui/0.4.2/js/mdui.min.js"></script>
-    <script src="./index.js"></script>
-</head>
-<body class="mdui-theme-layout-dark mdui-bottom-nav-fixed">
-    <section>
-        <ul class="cb-slideshow" style="list-style-type: none;">
-            <li><span>苟利</span></li>
-            <li><span>国家</span></li>
-            <li><span>生死以</span></li>
-            <li><span>岂能</span></li>
-            <li><span>祸福</span></li>
-            <li><span>趋避之</span></li>
-        </ul>
-    </section>
-    <div class="mdui-container">
-        <div class="mdui-card mdui-m-t-2">
-            <div class="mdui-card-content mdui-typo acg">
-                <div class="mdui-tab mdui-tab-scrollable mdui-tab-centered" mdui-tab>
-                    <a href="#anime-do" class="mdui-tab-active mdui-ripple">在看的动画</a>
-                    <a href="#anime-collect" class="mdui-ripple">看过的动画</a>
-                    <a href="#book-do" class="mdui-ripple">在看的图书</a>
-                    <a href="#book-collect" class="mdui-ripple">看过的图书</a>
-                    <a href="#game-do" class="mdui-ripple">在玩的游戏</a>
-                    <a href="#game-collect" class="mdui-ripple">玩过的游戏</a>
-                </div>
-                <div id="anime-do" class="mdui-row-xs-1 mdui-row-sm-2 mdui-row-md-4 i-card" bgm-type="anime" bgm-action="do" bgm-page="1">加载中...</div>
-                <div id="anime-collect" class="mdui-row-xs-1 mdui-row-sm-2 mdui-row-md-4 i-card" bgm-type="anime" bgm-action="collect" bgm-page="1">加载中...</div>
-                <div id="book-do" class="mdui-row-xs-1 mdui-row-sm-2 mdui-row-md-4 i-card" bgm-type="book" bgm-action="do" bgm-page="1">加载中...</div>
-                <div id="book-collect" class="mdui-row-xs-1 mdui-row-sm-2 mdui-row-md-4 i-card" bgm-type="book" bgm-action="collect" bgm-page="1">加载中...</div>
-                <div id="game-do" class="mdui-row-xs-1 mdui-row-sm-2 mdui-row-md-4 i-card" bgm-type="game" bgm-action="do" bgm-page="1">加载中...</div>
-                <div id="game-collect" class="mdui-row-xs-1 mdui-row-sm-2 mdui-row-md-4 i-card" bgm-type="game" bgm-action="collect" bgm-page="1">加载中...</div>
+<style>
+</style>
+<template>
+    <div class="mdui-card mdui-m-t-2">
+        <div class="mdui-card-content mdui-typo acg">
+            <div class="mdui-tab mdui-tab-scrollable mdui-tab-centered" mdui-tab>
+                <a @click="changetab('anime','do')" class="mdui-ripple mdui-tab-active">在看的动画</a>
+                <a @click="changetab('anime','collect')" class="mdui-ripple">看过的动画</a>
+                <a @click="changetab('book','do')" class="mdui-ripple">在看的图书</a>
+                <a @click="changetab('book','collect')" class="mdui-ripple">看过的图书</a>
+                <a @click="changetab('game','do')" class="mdui-ripple">在玩的游戏</a>
+                <a @click="changetab('game','collect')" class="mdui-ripple">玩过的游戏</a>
             </div>
-          </div>
+            <component_acg_bangumi :action="action" :type="type"></component_acg_bangumi>
+        </div>
     </div>
-    <div class="mdui-bottom-nav mdui-bottom-nav-scroll-hide">
-        <a href="./index.html" class="mdui-ripple" mdui-tooltip="{content: '首页'}">
-          <i class="mdui-icon material-icons">home</i>
-        </a>
-        <a href="#" class="mdui-ripple mdui-bottom-nav-active" mdui-tooltip="{content: '我的ACG时光机'}">
-          <i class="mdui-icon material-icons">favorite</i>
-        </a>
-        <a href="javascript:;" class="mdui-ripple" mdui-tooltip="{content: '页面制作中...'}">
-          <i class="mdui-icon material-icons">location_on</i>
-        </a>
-    </div>
-    <script>
-        function ajaxGetBgm(dom){
-            action = dom.attr('bgm-action');
-            type = dom.attr('bgm-type');
-            page = dom.attr('bgm-page');
-            $.ajax({
-                method: 'GET',
-                url: 'https://blogbak.ijglb.com/content/plugins/bangumi_info/bangumi_api.php',
-                data:{
-                    action: action,
-                    type: type,
-                    page: page
-                },
-                success: function (data) {
-                    creatbgmdo(eval('('+data+')'),dom);
-                },
-                error: function (xhr, textStatus) {
-                    creatbgmdo(null,dom);
-                }
-            });
-        }
-        function creatbgmdo(data,dom){
-            if(data != null && data.code == '0'){
-                isdo = dom.attr('bgm-action') =='do';
-                dom.empty();
-                $.each(data.data, function (i, value) {
-                    var str = '<div class="mdui-col">';
-                    str+= '<a href="'+value.url+'" target="_blank">';
-                    str+= '<div class="mdui-card mdui-hoverable"><div class="mdui-card-content">';
-                    str+= '<img class="mdui-card-header-avatar" src="'+value.image+'"/>';
-                    str+= '<div class="mdui-card-header-title bgm-content">'+value.name_cn+'</div>';
-                    str+= '<div class="mdui-card-header-subtitle bgm-content">'+value.name+'</div>';
-                    str+= '<div class="mdui-card-header-subtitle bgm-content">&nbsp;</div>';
-                    if((value.eps_count == 0 && value.ep_status == 0)||value.eps_count == null){
-                        if(value.star && value.update_time && !isdo){
-                            var progress = Math.round(value.star / 10 * 10000) / 100.00;
-                            str+= '<div class="mdui-card-header-subtitle mdui-progress bgm-content"><div class="mdui-progress-determinate" style="width: '+progress+'%;">'+value.update_time+',个人评分:'+value.star+'</div></div>';
-                        }
-                        else{
-                            str+= '<div class="mdui-card-header-subtitle mdui-progress bgm-content"><div class="mdui-progress-determinate" style="width: 100%;">进度：未知</div></div>';
-                        }
-                    }
-                    else{
-                        var progress = Math.round(value.ep_status / value.eps_count * 10000) / 100.00;
-                        str+= '<div class="mdui-card-header-subtitle mdui-progress bgm-content"><div class="mdui-progress-determinate" style="width: '+progress+'%;">进度：'+value.ep_status+'/'+value.eps_count+'</div></div>';
-                    }
-                    str+= '</div></div></a></div>';
-                    dom.append(str);
-                });
-                dom.attr('bgm-page',data.page);
-                if(data.pages != 1){
-                    var navhtml = '<div class="mdui-col-xs-12 mdui-text-center">';
-                    if(data.page != 1){
-                        navhtml+='<button onclick="nav(this)" bgm-page="'+(data.page-1)+'" class="nav mdui-btn mdui-btn-icon mdui-ripple mdui-text-color-white mdui-hoverable"><i class="mdui-icon material-icons">chevron_left</i></button>';
-                    }
-                    navhtml+='<span style="line-height:36px;">&nbsp;'+ data.page + '&nbsp;/&nbsp;' + data.pages+'&nbsp;</span>';
-                    if(data.page < data.pages){
-                        navhtml+='<button onclick="nav(this)" bgm-page="'+(data.page+1)+'" class="nav mdui-btn mdui-btn-icon mdui-ripple mdui-text-color-white mdui-hoverable"><i class="mdui-icon material-icons">chevron_right</i></button>';
-                    }
-                    navhtml+='</div>';
-                    dom.append(navhtml);
-                }
+</template>
+<script>
+    Rap.define(['/component/acg/bangumi'],{
+        data:function(){
+            return {
+              action:'do',
+              type:'anime'
             }
+        },
+        init:function(){
+          document.title = '我的ACG时光机 - 极光萝卜';
+        },
+        methods:{
+          changetab:function(type,action){
+            this.action = action;
+            this.type = type;
+          }
         }
-        function nav(dom){
-            var bgm = $(dom).closest('.i-card');
-            bgm.attr('bgm-page',$(dom).attr('bgm-page'));
-            ajaxGetBgm(bgm);
-            scroll();
-        }
-        function scroll(){
-            window.scrollBy(0,-document.body.clientHeight/10);
-            scrolldelay=setTimeout(scroll,100);
-            if(document.documentElement.scrollTop==0){
-                clearTimeout(scrolldelay);
-            }
-        }
-        ajaxGetBgm($('#anime-do'));
-        ajaxGetBgm($('#anime-collect'));
-        ajaxGetBgm($('#book-do'));
-        ajaxGetBgm($('#book-collect'));
-        ajaxGetBgm($('#game-do'));
-        ajaxGetBgm($('#game-collect'));
-    </script>
-</body>
-</html>
+    })
+</script>

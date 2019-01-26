@@ -1,0 +1,155 @@
+<style>
+.i-card .mdui-card{
+	margin: 5px;
+}
+.i-card a:not(.nav){
+	text-decoration:none;
+	display: block;
+}
+.i-card .mdui-card-header-avatar{
+  width: 70px!important;
+  height: 88px!important;
+  border-radius: 0!important;
+	/*margin-bottom: 16px;*/
+}
+.i-card .bgm-content{
+  margin-left: 80px!important;
+	opacity: 1!important;
+}
+.i-card .mdui-progress{
+  height: 20px!important;
+	width: auto!important;
+}
+</style>
+<template>
+    <div class="mdui-row-xs-1 mdui-row-sm-2 mdui-row-md-4 i-card">
+        <template v-if="loading">
+            加载中...
+        </template>
+        <template v-else>
+            <div class="mdui-col" v-for="item in data.data">
+                <a :href="item.url" target="_blank">
+                    <div class="mdui-card mdui-hoverable">
+                        <div class="mdui-card-content">
+                            <img class="mdui-card-header-avatar" :src="item.image"/>
+                            <div class="mdui-card-header-title bgm-content">{{ item.name_cn }}</div>
+                            <div class="mdui-card-header-subtitle bgm-content">{{ item.name }}</div>
+                            <div class="mdui-card-header-subtitle bgm-content">&nbsp;</div>
+                            <div v-if="item.progress == false" class="mdui-card-header-subtitle mdui-progress bgm-content"><div class="mdui-progress-determinate" style="width: 100%;">进度：未知</div></div>
+                            <div v-else-if="item.star" class="mdui-card-header-subtitle mdui-progress bgm-content"><div class="mdui-progress-determinate" :style="{ width: item.progress + '%' }">{{ item.update_time }},个人评分:{{ item.star }}</div></div>
+                            <div v-else class="mdui-card-header-subtitle mdui-progress bgm-content"><div class="mdui-progress-determinate" :style="{ width: item.progress + '%' }">进度：{{ item.ep_status }} / {{ item.eps_count }}</div></div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <template v-if="data.pages != 1">
+                <div class="mdui-col-xs-12 mdui-text-center">
+                    <button v-if="data.page != 1" @click="prev" class="nav mdui-btn mdui-btn-icon mdui-ripple mdui-text-color-white mdui-hoverable"><i class="mdui-icon material-icons">chevron_left</i></button>
+                    <span style="line-height:36px;">&nbsp;{{ data.page }}&nbsp;/&nbsp;{{ data.pages }}&nbsp;</span>
+                    <button v-if="data.page < data.pages" @click="next" class="nav mdui-btn mdui-btn-icon mdui-ripple mdui-text-color-white mdui-hoverable"><i class="mdui-icon material-icons">chevron_right</i></button>
+                </div>
+            </template>
+        </template>
+    </div>
+</template>
+<script>
+    Rap.define({
+        props: ['action','type'],
+        data: function(){
+            return {
+              loading : true,
+              page : 1,
+              data : null
+            }
+        },
+        computed: {
+          param: function () {
+                return {
+                  action : this.action,
+                  type : this.type,
+                  page : 1
+                }
+          }
+        },
+        watch:{
+            param: {
+              handler: function (newP, oldP) {
+                this.ajaxGetBgm(newP);
+              },
+              immediate: true
+            }
+        },
+        methods:{
+          ajaxGetBgm : function(param){
+            this.loading = true;
+            var vm = this;
+            $.ajax({
+                method: 'GET',
+                url: 'https://blogbak.ijglb.com/content/plugins/bangumi_info/bangumi_api.php',
+                data:param,
+                success: function (data) {
+                  vm.setData(eval('('+data+')'));
+                },
+                error: function (xhr, textStatus) {
+                  mdui.alert('数据获取出错，请尝试重试。');
+                  vm.loading = false;
+                }
+            });
+          },
+          setData : function(obj){
+            if(obj != null && obj.code == '0'){
+              var vm = this;
+              $.each(obj.data, function (i, value) {
+                if(vm.action == 'do'){
+                  value.star = false;
+                  if(value.ep_status == null){
+                    value.progress = false;
+                  }
+                  else{
+                    if(value.eps_count && value.ep_status > 0){
+                      value.progress = Math.round(value.ep_status / value.eps_count * 10000) / 100.00;
+                    }
+                    else{
+                      if(value.ep_status <= 0){
+                        value.ep_status = '??';
+                      }
+                      value.eps_count = '??';
+                      value.progress = 100.00;
+                    }
+                  }
+                }
+                else{
+                  value.progress = Math.round(value.star / 10 * 10000) / 100.00;
+                }
+              });
+              this.page = obj.page;
+              this.data = obj;
+              this.loading = false;
+            }
+          },
+          prev : function(){
+            this.ajaxGetBgm({
+              action : this.action,
+              type : this.type,
+              page : this.page - 1
+            });
+            this.scroll();
+          },
+          next : function(){
+            this.ajaxGetBgm({
+              action : this.action,
+              type : this.type,
+              page : this.page + 1
+            });
+            this.scroll();
+          },
+          scroll : function(){
+            window.scrollBy(0,-document.body.clientHeight/10);
+            scrolldelay=setTimeout(scroll,100);
+            if(document.documentElement.scrollTop==0){
+                clearTimeout(scrolldelay);
+            }
+          }
+        }
+    })
+</script>

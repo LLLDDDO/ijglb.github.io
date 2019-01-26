@@ -1,3 +1,6 @@
+[v-cloak] {
+		display: none;
+}
 .mdui-card,.mdui-bottom-nav{
 	background-color: rgba(66, 66, 66, .55)!important;
 }
