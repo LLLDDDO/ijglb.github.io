@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/mdui/0.4.2/css/mdui.min.css">
     <link rel="stylesheet" href="./index.css">
     <script src="https://cdnjs.loli.net/ajax/libs/mdui/0.4.2/js/mdui.min.js"></script>
-    <script src="./index.js"></script>
     <script src="https://cdnjs.loli.net/ajax/libs/vue/2.5.22/vue.min.js"></script>
     <script src="./rap.1.2.4.min.js"></script>
 </head>
@@ -20,7 +19,7 @@
     <div id="app">
         <section>
             <ul class="cb-slideshow" style="list-style-type: none;">
-                <li><span>苟利</span></li>
+                <li><span class="active" style="background-image: url('./image/background_74584235.jpg');">苟利</span></li>
                 <li><span>国家</span></li>
                 <li><span>生死以</span></li>
                 <li><span>岂能</span></li>
@@ -33,10 +32,10 @@
             </component>
         </div>
         <div class="mdui-bottom-nav mdui-bottom-nav-scroll-hide">
-            <a v-link="'home'" :class="{ 'mdui-bottom-nav-active' : nav.home  }" class="mdui-ripple" mdui-tooltip="{content: '首页'}">
+            <a v-link.replace="'home'" :class="{ 'mdui-bottom-nav-active' : nav.home  }" class="mdui-ripple" mdui-tooltip="{content: '首页'}">
             <i class="mdui-icon material-icons">home</i>
             </a>
-            <a v-link="'acg'" :class="{ 'mdui-bottom-nav-active' : nav.acg  }" class="mdui-ripple" mdui-tooltip="{content: '我的ACG时光机'}">
+            <a v-link.replace="'acg'" :class="{ 'mdui-bottom-nav-active' : nav.acg  }" class="mdui-ripple" mdui-tooltip="{content: '我的ACG时光机'}">
             <i class="mdui-icon material-icons">favorite</i>
             </a>
             <a :class="{ 'mdui-bottom-nav-active' : nav.other  }" class="mdui-ripple" mdui-tooltip="{content: '页面制作中...'}">
@@ -45,12 +44,13 @@
         </div>
     </div>
 </body>
+<script src="./index.js"></script>
 <script>
     $(document).ready(function () {
         Rap.config({
             debug: false,
             default_page: "home",
-            app_version: '2',
+            app_version: '3',
         }).ready(function () {
             if (!Rap.debug) {
                 //这里可以异步加载编译后的文件
@@ -83,7 +83,7 @@
                     }
                 }
             });
-        })
+        });
     });
 </script>
 </html>
