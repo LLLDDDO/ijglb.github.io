@@ -1,5 +1,6 @@
 var $ = mdui.JQ;
 
+$(function () { 
 var index = 0;
 var changeImage = function(){
     var sacle = $(window).width() / $(window).height();
@@ -41,4 +42,6 @@ var onImageLoad = function(){
 
 var backgroundImage = new Image();
 backgroundImage.onload = onImageLoad;
+
 changeImage();
+})
