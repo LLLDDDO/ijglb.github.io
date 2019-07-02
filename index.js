@@ -1,8 +1,10 @@
-var $ = mdui.JQ;
+//var $ = mdui.JQ;
 
 $(function () { 
 var index = 0;
 var changeImage = function(){
+  if(window.live2d || wait > 5)
+  {
     var sacle = $(window).width() / $(window).height();
     var action = 'pc';
     if(sacle < 1){
@@ -10,6 +12,10 @@ var changeImage = function(){
     }
     var url = 'https://img.ijglb.com/api.php?action=' + action + '&r=' + index;
     backgroundImage.src = url;
+  }else{
+    setTimeout(changeImage,1000);
+    wait++;
+  }
 }
 var onImageLoad = function(){
     var oldindex = index -1 < 0 ? 5 : index-1;
@@ -42,6 +48,7 @@ var onImageLoad = function(){
 
 var backgroundImage = new Image();
 backgroundImage.onload = onImageLoad;
+var wait = 0;
 
 changeImage();
 })

@@ -1,0 +1,38 @@
+{
+	"version":"Sample 1.0.0",
+	"model":"live2d/model/rfb_1601/normal/model.moc",
+	"textures":[
+		"live2d/model/rfb_1601/normal/model.1024/texture_00.png"
+	],
+	"layout":{
+		"center_x":0.0,
+		"center_y":0.0,
+		"height":2
+  },
+	"motions":{
+		"idle":[
+			{"file":"live2d/model/rfb_1601/normal/motions/daiji_idle_01.mtn"},
+			{"file":"live2d/model/rfb_1601/normal/motions/wait_1.mtn"},
+			{"file":"live2d/model/rfb_1601/normal/motions/wait_2.mtn"},
+			{"file":"live2d/model/rfb_1601/normal/motions/login.mtn"}
+		],
+		"click":[
+			{"file":"live2d/model/rfb_1601/normal/motions/shake.mtn"},
+			{"file":"live2d/model/rfb_1601/normal/motions/touch_1.mtn"},
+			{"file":"live2d/model/rfb_1601/normal/motions/touch_2.mtn"},
+			{"file":"live2d/model/rfb_1601/normal/motions/touch_3.mtn"},
+			{"file":"live2d/model/rfb_1601/normal/motions/touch_4.mtn"},
+			{"file":"live2d/model/rfb_1601/normal/motions/touch_5.mtn"},
+			{"file":"live2d/model/rfb_1601/normal/motions/wedding.mtn"},
+			{"file":"live2d/model/rfb_1601/normal/motions/wedding_touch.mtn"}
+		]
+	},
+	"physics":"live2d/model/rfb_1601/normal/physics.json",
+	
+	"hit_areas":[
+			{"name":"head","id":"D_REF.HEAD"},
+			{"name":"body","id":"D_REF.BODY"},
+			{"name":"breast","id":"D_REF.BREAST"},
+			{"name":"hand","id":"D_REF.HAND"}
+			]
+}

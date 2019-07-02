@@ -1,0 +1,33 @@
+{
+	"version":"Sample 1.0.0",
+	"model":"live2d/model/rfb_1601/destroy/model.moc",
+	"textures":[
+		"live2d/model/rfb_1601/destroy/model.1024/texture_00.png"
+	],
+	"layout":{
+		"center_x":0.0,
+		"center_y":0.0,
+		"height":2
+  	},
+	"motions":{
+		"click":[
+			{"file":"live2d/model/rfb_1601/destroy/motions/broken_1.mtn"},
+			{"file":"live2d/model/rfb_1601/destroy/motions/broken_2.mtn"},
+			{"file":"live2d/model/rfb_1601/destroy/motions/broken_3.mtn"},
+			{"file":"live2d/model/rfb_1601/destroy/motions/broken_4.mtn"},
+			{"file":"live2d/model/rfb_1601/destroy/motions/broken_5.mtn"},
+			{"file":"live2d/model/rfb_1601/destroy/motions/shake.mtn"}
+		],
+		"idle":[
+			{"file":"live2d/model/rfb_1601/destroy/motions/daiji_idle_01.mtn"},
+			{"file":"live2d/model/rfb_1601/destroy/motions/wait_1.mtn"},
+			{"file":"live2d/model/rfb_1601/destroy/motions/login.mtn"}
+		]
+	},
+	"physics":"live2d/model/rfb_1601/destroy/physics.json",
+	"pose":"live2d/model/rfb_1601/destroy/pose.json",
+    "hit_areas":[
+			{"name":"body","id":"D_REF.BODY"},
+	        {"name":"leg","id":"D_REF.LEG"}
+			]
+	}

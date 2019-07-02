@@ -1,0 +1,37 @@
+{
+	"version":"Sample 1.0.0",
+	"model":"live2d/model/kp31_310/normal/model.moc",
+	"textures":[
+		"live2d/model/kp31_310/normal/model.1024/texture_00.png"
+	],
+	"layout":{
+		"center_x":0.0,
+		"center_y":0.0,
+		"height":2
+  },
+	"motions":{
+		"idle":[
+			{"file":"live2d/model/kp31_310/normal/motions/daiji_idle_01.mtn"},
+			{"file":"live2d/model/kp31_310/normal/motions/wait_1.mtn"},
+			{"file":"live2d/model/kp31_310/normal/motions/wait_2.mtn"},
+			{"file":"live2d/model/kp31_310/normal/motions/login.mtn"}
+		],
+		"click":[
+			{"file":"live2d/model/kp31_310/normal/motions/touch_1.mtn"},
+			{"file":"live2d/model/kp31_310/normal/motions/touch_2.mtn"},
+			{"file":"live2d/model/kp31_310/normal/motions/touch_3.mtn"},
+			{"file":"live2d/model/kp31_310/normal/motions/touch_4.mtn"},
+			{"file":"live2d/model/kp31_310/normal/motions/touch_5.mtn"},
+			{"file":"live2d/model/kp31_310/normal/motions/shake.mtn"},
+			{"file":"live2d/model/kp31_310/normal/motions/christmas.mtn"},
+			{"file":"live2d/model/kp31_310/normal/motions/wedding_touch.mtn"},
+			{"file":"live2d/model/kp31_310/normal/motions/wedding.mtn"},
+			{"file":"live2d/model/kp31_310/normal/motions/bonus.mtn"}
+		]
+	},
+  "hit_areas":[
+			{"name":"head","id":"D_REF_HEAD"},
+			{"name":"leg","id":"D_REF_LEG"},
+			{"name":"body","id":"D_REF_BODY"}
+	]
+}

@@ -1,0 +1,32 @@
+{
+	"version":"Sample 1.0.0",
+	"model":"live2d/model/kp31_310/destroy/model.moc",
+	"textures":[
+		"live2d/model/kp31_310/destroy/model.1024/texture_00.png"
+	],
+	"layout":{
+		"center_x":0.0,
+		"center_y":0.0,
+		"height":2
+  },
+	"motions":{
+		"idle":[
+			{"file":"live2d/model/kp31_310/destroy/motions/daiji_idle_02.mtn"},
+			{"file":"live2d/model/kp31_310/destroy/motions/wait_1.mtn"}
+		],
+		"click":[
+			{"file":"live2d/model/kp31_310/destroy/motions/broken_1.mtn"},
+			{"file":"live2d/model/kp31_310/destroy/motions/broken_2.mtn"},
+			{"file":"live2d/model/kp31_310/destroy/motions/broken_3.mtn"},
+			{"file":"live2d/model/kp31_310/destroy/motions/broken_4.mtn"},
+			{"file":"live2d/model/kp31_310/destroy/motions/broken_5.mtn"}
+		]
+	},
+	
+    "hit_areas":[
+			{"name":"body","id":"D_REF.BODYBROKEN"},
+			{"name":"head","id":"D_REF.HEAD"},
+			{"name":"leg","id":"D_REF.LEGBROKEN"}
+		
+	]
+}

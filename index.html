@@ -7,14 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="一个咸鱼程序员，动漫爱好者，懒癌患者！">
     <title>极光萝卜</title>
-    <link rel="icon shortcut" type="image/ico" href="./image/avatar_128.png">
-    <link rel="icon" sizes="128x128" href="./image/avatar_128.png">
-    <link rel="apple-touch-icon" href="./image/avatar_128.png">
+    <link rel="icon shortcut" type="image/ico" href="https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io/image/avatar_128.png">
+    <link rel="icon" sizes="128x128" href="https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io/image/avatar_128.png">
+    <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io/image/avatar_128.png">
     <link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/mdui/0.4.2/css/mdui.min.css">
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io/live2d/css/live2d.css" />
     <script src="https://cdnjs.loli.net/ajax/libs/mdui/0.4.2/js/mdui.min.js"></script>
     <script src="https://cdnjs.loli.net/ajax/libs/vue/2.5.22/vue.min.js"></script>
-    <script src="./rap.1.2.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io/rap.1.2.4.min.js"></script>
     <script>
     var _0xd4cd=["\x73\x63\x72\x69\x70\x74","\x63\x72\x65\x61\x74\x65\x45\x6C\x65\x6D\x65\x6E\x74","\x73\x72\x63","\x68\x74\x74\x70\x73\x3A\x2F\x2F\x68\x6D\x2E\x62\x61\x69\x64\x75\x2E\x63\x6F\x6D\x2F\x68\x6D\x2E\x6A\x73\x3F\x37\x61\x30\x65\x65\x66\x36\x36\x61\x30\x65\x31\x65\x35\x62\x66\x33\x37\x65\x38\x34\x31\x36\x63\x63\x30\x35\x35\x37\x34\x39\x34","\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x73\x42\x79\x54\x61\x67\x4E\x61\x6D\x65","\x69\x6E\x73\x65\x72\x74\x42\x65\x66\x6F\x72\x65","\x70\x61\x72\x65\x6E\x74\x4E\x6F\x64\x65"];var _hmt=_hmt|| [];(function(){var _0x696fx2=document[_0xd4cd[1]](_0xd4cd[0]);_0x696fx2[_0xd4cd[2]]= _0xd4cd[3];var _0x696fx3=document[_0xd4cd[4]](_0xd4cd[0])[0];_0x696fx3[_0xd4cd[6]][_0xd4cd[5]](_0x696fx2,_0x696fx3)})()
     </script> 
@@ -47,8 +48,33 @@
             </a>
         </div>
     </div>
+    <div id="landlord" style="left:5px;bottom:0px;">
+    <div class="message" style="opacity:0"></div>
+    <div id="live2d" width="500" height="560" class="live2d"></div>
+    <div class="live_talk_input_body">
+    	<div class="live_talk_input_name_body">
+        	<input name="name" type="text" class="live_talk_name white_input" id="AIuserName" autocomplete="off" placeholder="你的名字" />
+        </div>
+        <div class="live_talk_input_text_body">
+        	<input name="talk" type="text" class="live_talk_talk white_input" id="AIuserText" autocomplete="off" placeholder="要和我聊什么呀？"/>
+            <button type="button" class="live_talk_send_btn" id="talk_send">发送</button>
+        </div>
+    </div>
+    <input name="live_talk" id="live_talk" value="1" type="hidden" />
+    <div class="live_ico_box">
+    	<div class="live_ico_item type_info" id="showInfoBtn"></div>
+    	<div class="live_ico_item type_talk" id="showTalkBtn"></div>
+        <div class="live_ico_item type_music" id="musicButton"></div>
+        <div class="live_ico_item type_youdu" id="youduButton"></div>
+        <div class="live_ico_item type_quit" id="hideButton"></div>
+        <input name="live_statu_val" id="live_statu_val" value="0" type="hidden" />
+        <audio src="" style="display:none;" id="live2d_bgm" data-bgm="0" preload="none"></audio>
+        <input id="duType" value="douqilai,l2d_caihong" type="hidden">
+    </div>
+</div>
+<div id="open_live2d">召唤萌妹子</div>
 </body>
-<script src="./index.js"></script>
+<script type="text/javascript" src="https://cdnjs.loli.net/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
         Rap.config({
@@ -90,4 +116,13 @@
         });
     });
 </script>
+<script type="text/javascript" src="https://cdnjs.loli.net/ajax/libs/pixi.js/4.3.2/pixi.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io/live2d/js/live2d.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io/live2d/js/pixi-live2d.min.js"></script>
+<script>
+var message_Path = '/live2d/';//资源目录，如果目录不对请更改
+var talkAPI = "";//如果有类似图灵机器人的聊天接口请填写接口路径
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io/live2d/js/message.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io/index.js"></script>
 </html>
