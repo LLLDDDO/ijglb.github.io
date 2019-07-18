@@ -1,11 +1,16 @@
+language: node_js # 升级版本需要依赖 npm
+node_js: stable
+
+install: true # 无需安装依赖，调过安装
+
 branches:
   only:
-  - master
+  - master # 只发布 master 分支
+
+before_script:
+- git config --global user.name "travis" # 配置 travis git 信息
+- git config --global user.email "travis@ijglb.com"
+
 script:
-  - git config --local user.name "travis"
-  - git config --local user.email "travis@ijglb.com"
-  - export GIT_TAG=v0.1.$TRAVIS_BUILD_NUMBER
-  - git tag $GIT_TAG
-deploy:
-  provider: releases
-  api_key: $GITHUB_TOKEN
+- git push -f https://$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG.git `npm version patch -m "%s [ci skip]"` # 打 Tag，发布到 Github Release, 使用 [ci skip] 调过 CI， 防止死循环
+- git push -f https://$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG.git HEAD:master #将新版本文件推送回 Github

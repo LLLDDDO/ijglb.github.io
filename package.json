@@ -1,0 +1,20 @@
+{
+    "name": "ijglb",
+    "version": "0.0.1",
+    "description": "极光萝卜",
+    "main": "index.js",
+    "scripts": {
+        "test": "exit 0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ijglb/ijglb.github.io.git"
+    },
+    "keywords": [],
+    "author": "ijglb",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ijglb/ijglb.github.io/issues"
+    },
+    "homepage": "https://ijglb.com"
+}
