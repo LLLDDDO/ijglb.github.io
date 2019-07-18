@@ -5,7 +5,7 @@ before_deploy:
   - git config --local user.name "travis"
   - git config --local user.email "travis@ijglb.com"
   - export GIT_TAG=v0.1.$TRAVIS_BUILD_NUMBER
-  - git tag $TRAVIS_TAG
+  - git tag $GIT_TAG
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
