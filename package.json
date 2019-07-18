@@ -1,6 +1,6 @@
 {
     "name": "ijglb",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "极光萝卜",
     "main": "index.js",
     "scripts": {
