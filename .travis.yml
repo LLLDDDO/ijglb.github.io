@@ -1,8 +1,7 @@
-install: skip
 branches:
   only:
   - master
-before_deploy:
+script:
   - git config --local user.name "travis"
   - git config --local user.email "travis@ijglb.com"
   - export GIT_TAG=v0.1.$TRAVIS_BUILD_NUMBER
