@@ -474,7 +474,26 @@ function showbyPixi(modelPath){
         cache: true,
         url: modelPath,
         dataType: "json",
-        success: function (result){
+		success: function (result) {
+			var cdn = "https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io/";
+			//修改model 接入cdn
+			result.model = cdn + result.model;
+			if (result.physics) {
+				result.physics = cdn + result.physics;
+			}
+			if (result.pose) {
+				result.pose = cdn + result.pose;
+			}
+			$.each(result.textures, function (i, value) {
+				result.textures[i] = cdn + value;
+			});
+			$.each(result.motions.click, function (i, value) {
+				result.motions.click[i].file = cdn + value.file;
+			});
+			$.each(result.motions.idle, function (i, value) {
+				result.motions.idle[i].file = cdn + value.file;
+			});
+            //live2d开始
             if(live2dSprite){
                 live2dSprite.destroy();
                 stage.removeChildren();
