@@ -1,4 +1,4 @@
-language: php
+install: skip
 branches:
   only:
   - master
