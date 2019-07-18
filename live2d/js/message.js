@@ -475,7 +475,7 @@ function showbyPixi(modelPath){
         url: modelPath,
         dataType: "json",
 		success: function (result) {
-			var cdn = "https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io/";
+			var cdn = "https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io@1.0.0/";
 			//修改model 接入cdn
 			result.model = cdn + result.model;
 			if (result.physics) {
