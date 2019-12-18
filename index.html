@@ -11,7 +11,7 @@
     <link rel="icon" sizes="128x128" href="https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io/image/avatar_128.png">
     <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io/image/avatar_128.png">
     <link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/mdui/0.4.2/css/mdui.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io/index.css">
+    <link rel="stylesheet" href="/index.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io/live2d/css/live2d.css" />
     <script src="https://cdnjs.loli.net/ajax/libs/mdui/0.4.2/js/mdui.min.js"></script>
     <script src="https://cdnjs.loli.net/ajax/libs/vue/2.5.22/vue.min.js"></script>
@@ -33,14 +33,17 @@
             </ul>
         </section>
         <div class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide">
-            <div class="mdui-tab" mdui-tab>
-                <a v-link.replace="'home'" :class="{ 'mdui-tab-active' : nav.home  }" class="mdui-ripple mdui-ripple-white">首页</a>
-                <a v-link.replace="'acg'" :class="{ 'mdui-tab-active' : nav.acg  }" class="mdui-ripple mdui-ripple-white">我的ACG时光机</a>
+            <div id="tab-alpha" class="mdui-tab mdui-color-theme mdui-tab-centered" mdui-tab>
+                <a v-link.replace="'home'" :class="{ 'mdui-tab-active' : home  }" class="mdui-ripple mdui-ripple-white">首页</a>
+                <a v-link.replace="'acg'" :class="{ 'mdui-tab-active' : acg  }" class="mdui-ripple mdui-ripple-white">我的ACG时光机</a>
             </div>
         </div>
         <div class="mdui-container">
-            <component v-bind:title.sync="title" v-bind:is="childView" v-cloak>
+            <component v-bind.sync="info" v-bind:is="childView" v-cloak>
             </component>
+            <div class="mdui-card mdui-m-t-1 mdui-text-center mdui-typo">
+                &copy; 2019 极光萝卜 | <a href="http://www.miitbeian.gov.cn/" target="_BLANK">闽ICP备16005039号-1</a>
+            </div>
         </div>
     </div>
     <div id="landlord" style="left:5px;bottom:0px;">
@@ -71,55 +74,52 @@
 </body>
 <script type="text/javascript" src="https://cdnjs.loli.net/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script>
-    $(document).ready(function () {
-        Rap.config({
-            debug: false,
-            default_page: "home",
-            app_version: '7',
-        }).ready(function () {
-            if (!Rap.debug) {
-                //这里可以异步加载编译后的文件
-                //return Rap.loadScript('rap-all.js');
-            }
-        }).then(function () {
-            window.APP = Rap.app({
-                el: '#app',
-                data:{
-                    nav :{
-                        first : true,
-                        home : true,
-                        acg : false
-                    },
-                    title : "首页"
-                },
-                beforeUpdate:function(){
-                    this.nav.home = this.nav.acg = false;
-                    var page = Rap.global_router.page;
-                    switch(page){
-                        case 'home':this.nav.home = true;
-                        break;
-                        case 'acg':this.nav.acg = true;
-                        break;
-                    }
-                },
-                watch: {
-                    title: {
-                        handler: function (newTitle, oldTitle) {
-                            document.title = newTitle + ' - 极光萝卜';
-                        }
-                    }
+$(document).ready(function () {
+    Rap.config({
+        debug: false,
+        default_page: "home",
+        app_version: '8',
+    }).ready(function () {
+        if (!Rap.debug) {
+            //这里可以异步加载编译后的文件
+            //return Rap.loadScript('rap-all.js');
+        }
+    }).then(function () {
+        window.APP = Rap.app({
+            el: '#app',
+            data:{
+                info :{
+                    title : "",
+                    page : ""
                 }
-            });
+            },
+            computed:{
+                home : function (){
+                    return this.info.page == "home";
+                },
+                acg : function (){
+                    return this.info.page == "acg";
+                }
+            },
+            watch: {
+                info: {
+                    handler: function (newInfo) {
+                        document.title = newInfo.title + ' - 极光萝卜';
+                    },
+                    deep: true
+                }
+            }
         });
     });
+});
 </script>
 <script type="text/javascript" src="https://cdnjs.loli.net/ajax/libs/pixi.js/4.3.2/pixi.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io/live2d/js/live2d.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io@1.0.0/live2d/js/pixi-live2d.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io/live2d/js/pixi-live2d.min.js"></script>
 <script>
-    var message_Path = 'https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io@1.0.0/live2d/';//资源目录，如果目录不对请更改
-    var talkAPI = "";//如果有类似图灵机器人的聊天接口请填写接口路径
+    var message_Path = 'https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io/live2d/';
+    var talkAPI = "";
 </script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io@1.0.0/live2d/js/message.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io/index.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io/live2d/js/message.js"></script>
+<script src="/index.js"></script>
 </html>

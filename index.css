@@ -1,8 +1,11 @@
 [v-cloak] {
 		display: none;
 }
-.mdui-card,.mdui-appbar{
+.mdui-card{
 	background-color: rgba(66, 66, 66, .55)!important;
+}
+#tab-alpha{
+	background-color: rgb(33, 33, 33,.8)!important;
 }
 .cb-slideshow li span {
 	width:100%;

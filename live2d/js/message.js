@@ -510,7 +510,7 @@ function showbyPixi(modelPath){
                 if (live2dSprite.hitTest(null, point.x, point.y)) {
                     clickTime++;
                     console.log("摸了"+clickTime+"下");
-                    if(!broken && clickTime >= 20){
+                    if(!broken && clickTime > 10){
                         showbyPixi(brokenModel);
                         broken = true;
                         hitFlag = true;
