@@ -1,7 +1,7 @@
 [v-cloak] {
 		display: none;
 }
-.mdui-card,.mdui-bottom-nav{
+.mdui-card,.mdui-appbar{
 	background-color: rgba(66, 66, 66, .55)!important;
 }
 .cb-slideshow li span {
