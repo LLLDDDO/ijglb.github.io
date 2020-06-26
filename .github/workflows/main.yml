@@ -1,0 +1,20 @@
+name: Upload to COS
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install coscmd
+      run: sudo pip install coscmd
+    - name: Configure coscmd
+      env:
+        SECRET_ID: ${{ secrets.SECRETID }}
+        SECRET_KEY: ${{ secrets.SECRETKEY }}
+        BUCKET: ${{ secrets.BUCKET }}
+        REGION: ${{ secrets.REGION }}
+      run: coscmd config -a $SECRET_ID -s $SECRET_KEY -b $BUCKET -r $REGION
+    - name: Upload
+      run: coscmd upload -rs --delete -f ./ / --ignore "./.git/*"
