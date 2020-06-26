@@ -22,6 +22,9 @@ Rap.define('/global.js', [], function () {
             computed:{
                 home : function (){
                     return this.info.page == "home";
+                },
+                site : function (){
+                    return this.info.page == "site";
                 }
             },
             watch: {

@@ -21,17 +21,21 @@
             <div class="mdui-color-theme mdui-tab mdui-tab-centered" mdui-tab>
                 <a v-link="'page/home'" :class="{ 'mdui-tab-active' : home  }" class="mdui-ripple mdui-ripple-white">
                     <i class="mdui-icon material-icons">home</i>
-                <label>首页</label>
+                    <label>首页</label>
+                </a>
+                <a v-link="'page/site'" :class="{ 'mdui-tab-active' : site  }" class="mdui-ripple mdui-ripple-white">
+                    <i class="mdui-icon material-icons">apps</i>
+                    <label>站点</label>
                 </a>
             </div>
         </div>
         <div class="mdui-container-fluid mdui-color-theme-100">
-            <div :style='contentHeight' class="mdui-card mdui-color-theme-300">
+            <div :style='contentHeight' class="mdui-card mdui-color-theme-200">
                 <keep-alive :include="keep_include">
                     <component v-bind.sync="info" v-bind:is="childView"></component>
                 </keep-alive>
             </div>
-            <div id="footer" class="mdui-color-theme-100 mdui-m-t-1 mdui-text-center mdui-typo">
+            <div id="footer" class="mdui-m-t-1 mdui-text-center mdui-typo">
                 &copy; 极光萝卜 | <a href="http://beian.miit.gov.cn" target="_blank">闽ICP备16005039号-1</a>
             </div>
         </div>
@@ -40,8 +44,8 @@
 <script>
     var $$ = mdui.JQ;
     Rap.config({
-        debug: true,// 调试模式  
-        app_version: '1.0',//版本号
+        debug: false,// 调试模式  
+        app_version: '1.1',//版本号
         router_model: 'hash',//路由模式  history 和 hash
         keep_include: [],//需要 keep-alive的页面
         default_page: "page/home",// 默认页面 必须要配
