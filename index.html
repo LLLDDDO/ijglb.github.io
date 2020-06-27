@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/css/mdui.min.css">
     <script src="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/js/mdui.min.js"></script>
     <script src="//cdnjs.loli.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
-    <script src="./rap.1.3.2.js"></script>
+    <script src="//cdn.jsdelivr.net/gh/ijglb/ijglb.github.io/rap.1.3.2.js"></script>
 </head>
 <body class="mdui-appbar-with-tab-larger mdui-theme-primary-teal mdui-theme-accent-deep-orange">
     <div id="app"  v-cloak>
@@ -26,6 +26,10 @@
                 <a v-link="'page/site'" :class="{ 'mdui-tab-active' : site  }" class="mdui-ripple mdui-ripple-white">
                     <i class="mdui-icon material-icons">apps</i>
                     <label>站点</label>
+                </a>
+                <a v-link="'page/links'" :class="{ 'mdui-tab-active' : links  }" class="mdui-ripple mdui-ripple-white">
+                    <i class="mdui-icon material-icons">link</i>
+                    <label>友链</label>
                 </a>
             </div>
         </div>
@@ -44,16 +48,16 @@
 <script>
     var $$ = mdui.JQ;
     Rap.config({
-        debug: false,// 调试模式  
-        app_version: '1.1',//版本号
-        router_model: 'hash',//路由模式  history 和 hash
-        keep_include: [],//需要 keep-alive的页面
-        default_page: "page/home",// 默认页面 必须要配
-        filePostfix: 'vue',//组件文件的后缀 默认是html 
-        css: [//需要预加载的 css 文件 ,会被按版本号缓存
+        debug: false,
+        app_version: '1.2',
+        router_model: 'hash',
+        keep_include: [],
+        default_page: "page/home",
+        filePostfix: 'vue',
+        css: [
         ],
-        script: [//需要预加载的 script 文件 ,会被按版本号缓存 
-            "/global.js"                //入口文件
+        script: [
+            "/global.js"
         ]
     })
 </script>

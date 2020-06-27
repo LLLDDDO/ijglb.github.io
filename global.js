@@ -25,6 +25,9 @@ Rap.define('/global.js', [], function () {
                 },
                 site : function (){
                     return this.info.page == "site";
+                },
+                links : function (){
+                    return this.info.page == "links";
                 }
             },
             watch: {
