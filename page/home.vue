@@ -45,7 +45,6 @@
         },
         init:function () {
             this.$emit('update:ptitle', "首页");
-            this.$emit('update:page', "home");
         }
     })
 </script>

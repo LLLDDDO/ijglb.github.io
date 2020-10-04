@@ -30,8 +30,7 @@
             }
         },
         init:function () {
-            this.$emit('update:ptitle', "友链");
-            this.$emit('update:page', "links");
+            this.$emit('update:ptitle', "友情链接");
         },
         created:function(){
             var that = this;

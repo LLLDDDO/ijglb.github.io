@@ -19,8 +19,7 @@
             }
         },
         init:function () {
-            this.$emit('update:ptitle', "站点");
-            this.$emit('update:page', "site");
+            this.$emit('update:ptitle', "我的站点");
         }
     })
 </script>
