@@ -13,20 +13,22 @@ Rap.define('/global.js', [], function () {
                     {
                         name: "首页",
                         icon: "home",
-                        page: "page/home",
-                        active: false
+                        page: "page/home"
                     },
                     {
                         name: "站点",
                         icon: "apps",
-                        page: "page/site",
-                        active: false
+                        page: "page/site"
+                    },
+                    {
+                        name: "服务器监控",
+                        icon: "cloud",
+                        page: "page/server-status"
                     },
                     {
                         name: "友链",
                         icon: "link",
-                        page: "page/links",
-                        active: false
+                        page: "page/links"
                     }
                 ]
             },
