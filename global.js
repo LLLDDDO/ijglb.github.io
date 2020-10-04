@@ -69,7 +69,6 @@ Rap.define('/global.js', [], function () {
             }
         });
     }).then(function () {
-
     }).catch(function (e) {
   
     });
