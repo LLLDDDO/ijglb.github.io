@@ -103,7 +103,7 @@
                         cache: false,
                         timeout: 10000,
                         dataType: 'json',
-                        url: 'https://status.ijglb.com/json/stats.json',
+                        url: 'https://674665939.xyz/json/stats.json',
                         success: function (data) {
                             that.updated = data.updated;
                             $$.each(data.servers, function (index, server) {
