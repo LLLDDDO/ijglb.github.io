@@ -62,7 +62,7 @@
                             <div class="title">月流量：</div><div class="content">入：{{ server.online ? bytesToSize(server.network_in,2) : '-'}} | 出：{{ server.online ? bytesToSize(server.network_out,2) : '-'}}</div>
                         </div>
                         <div class="row">
-                            <div class="title">网络：</div><div class="content">入：{{ server.online ? bytesToSize(server.network_rx,2,1) : '-'}} | 出：{{ server.online ? bytesToSize(server.network_tx,2,1) : '-'}}</div>
+                            <div class="title">网络：</div><div class="content">入：{{ server.online ? bytesToSize(server.network_rx,2) : '-'}} | 出：{{ server.online ? bytesToSize(server.network_tx,2) : '-'}}</div>
                         </div>
                     </div>
                 </div>
